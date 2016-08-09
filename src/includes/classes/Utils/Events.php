@@ -96,7 +96,7 @@ class Events extends SCoreClasses\SCore\Base\Core
         } else {
             $stripe_customer_id = $stripe_card_id = $stripe_charge_id = '';
         }
-        foreach ($WC_Order->get_items() as $_item_id => $_item) {
+        foreach ($WC_Order->get_items() ?: [] as $_item_id => $_item) {
             if (!($_WC_Product = s::wcProductByOrderItemId($_item_id, $WC_Order))) {
                 continue; // Not a product or not possible.
             }
