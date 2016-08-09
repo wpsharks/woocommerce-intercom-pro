@@ -43,7 +43,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
     public function onWpFooter()
     {
         echo '<script type="text/javascript>';
-        echo    'window.intercomSettings = '.json_encode($this->settings());
+        echo    'window.intercomSettings = '.json_encode($this->settings()).';';
         echo '</script>';
 
         // echo snippet.
