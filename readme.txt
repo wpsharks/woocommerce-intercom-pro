@@ -14,7 +14,7 @@ Donate: https://wpsharks.com/donate
 Contributors: wpsharks, JasWSInc, raamdev, KristineDS, reedyseth, sitegeek
 Tags: wpsharks, woocommerce-intercom
 
-WP Sharks™ plugin woocommerce-intercom.
+WooCommerce + Intercom integration for WordPress.
 
 == Description ==
 

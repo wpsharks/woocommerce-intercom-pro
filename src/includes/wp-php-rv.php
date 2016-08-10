@@ -2,7 +2,7 @@
 /**
  * WP PHP RV.
  *
- * @author @jaswsinc
+ * @author @raamdev
  * @copyright WP Sharks™
  */
 // PHP v5.2 compatible.
