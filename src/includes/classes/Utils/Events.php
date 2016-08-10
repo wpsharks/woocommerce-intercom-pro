@@ -79,8 +79,8 @@ class Events extends SCoreClasses\SCore\Base\Core
             return; // Not possible.
         }
         $app_id   = s::getOption('app_id');
-        $app_key  = s::getOption('app_key');
-        $Intercom = new IntercomClient($app_id, $app_key);
+        $api_key  = s::getOption('api_key');
+        $Intercom = new IntercomClient($app_id, $api_key);
 
         $user_id = (int) $WC_Order->get_user_id();
         $email   = (string) $WC_Order->billing_email;

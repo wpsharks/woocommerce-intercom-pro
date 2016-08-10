@@ -39,7 +39,7 @@ $Form = $this->s::menuPageForm('§save-options');
 
         <?= $Form->inputRow([
             'label' => __('Intercom App ID', 'woocommerce-intercom'),
-            'tip'   => __('Here is a tip about how to obtain the App ID.', 'woocommerce-intercom'),
+            'tip'   => __('Your App ID is available on the API Keys page on Intercom, accessible from your App Settings menu option.', 'woocommerce-intercom'),
 
             'name'  => 'app_id',
             'value' => s::getOption('app_id'),
@@ -47,11 +47,11 @@ $Form = $this->s::menuPageForm('§save-options');
 
         <?= $Form->inputRow([
             'type'  => 'password',
-            'label' => __('Intercom App Key', 'woocommerce-intercom'),
-            'tip'   => __('Here is a tip about how to obtain the App Key.', 'woocommerce-intercom'),
+            'label' => __('Intercom API Key', 'woocommerce-intercom'),
+            'tip'   => __('Your API Keys are available on the API Keys page on Intercom, accessible from your App Settings menu option.', 'woocommerce-intercom'),
 
-            'name'  => 'app_key',
-            'value' => s::getOption('app_key'),
+            'name'  => 'api_key',
+            'value' => s::getOption('api_key'),
         ]); ?>
 
     <?= $Form->closeTable(); ?>

@@ -86,7 +86,7 @@ class App extends SCoreClasses\App
             '§pro_option_keys' => [],
             '§default_options' => [
                 'app_id'  => '',
-                'app_key' => '',
+                'api_key' => '',
             ],
 
             '§conflicts' => [
