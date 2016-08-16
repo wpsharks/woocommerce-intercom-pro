@@ -45,6 +45,8 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
         echo '<script type="text/javascript>';
         echo    'window.intercomSettings = '.json_encode($this->settings()).';';
         echo '</script>';
+        // @TODO Create a plugin option that lets you define the scenarios where the widget should be loaded
+        echo '<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic(\'reattach_activator\');ic(\'update\',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement(\'script\');s.type=\'text/javascript\';s.async=true;s.src=\'https://widget.intercom.io/widget/' . s::getOption('app_id') . '\';var x=d.getElementsByTagName(\'script\')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent(\'onload\',l);}else{w.addEventListener(\'load\',l,false);}}})()</script>';
 
         // echo snippet.
     }
@@ -58,11 +60,29 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
      */
     protected function settings(): array
     {
-        return [
-            'email'      => '',
-            'user_id'    => '',
-            'app_id'     => s::getOption('app_id'),
-            'created_at' => time(),
-        ];
+        if (is_user_logged_in()) { // Only logged-in users
+            $current_user = wp_get_current_user();
+
+            return [ // Information about logged in user that should be appear as Custom Attributes
+
+                     // Intercom Standard Attributes https://developers.intercom.io/reference#user-model
+                     'app_id'            => s::getOption('app_id'), // Intercom App ID
+                     'type'              => 'user',
+                     'id'                => $current_user->user_login,
+                     'email'             => $current_user->user_email,
+                     'name'              => $current_user->user_firstname.' '.$current_user->user_lastname,
+
+                     // Intercom Custom Attributes http://bit.ly/2aZvEtb
+                     'wp_roles'          => implode(', ', $current_user->roles),
+                     'wp_edit_user_link' => get_edit_user_link($current_user->ID),
+
+                     // @TODO Add other WooCommerce-related user-data, such has products purchased
+            ];
+        } else { // Not logged in. @TODO Add support for Intercom Engage?
+            return [
+                'app_id' => s::getOption('app_id'), // Intercom App ID
+            ];
+        }
+
     }
 }
