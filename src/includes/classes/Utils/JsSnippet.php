@@ -42,7 +42,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
      */
     public function onWpFooter()
     {
-        echo '<script type="text/javascript>';
+        echo '<script type="text/javascript">';
         echo    'window.intercomSettings = '.json_encode($this->settings()).';';
         echo '</script>';
         // @TODO Create a plugin option that lets you define the scenarios where the widget should be loaded
@@ -66,15 +66,19 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
             return [ // Information about logged in user that should be appear as Custom Attributes
 
                      // Intercom Standard Attributes https://developers.intercom.io/reference#user-model
-                     'app_id'            => s::getOption('app_id'), // Intercom App ID
-                     'type'              => 'user',
-                     'id'                => $current_user->user_login,
-                     'email'             => $current_user->user_email,
-                     'name'              => $current_user->user_firstname.' '.$current_user->user_lastname,
+                     'app_id'     => s::getOption('app_id'), // Intercom App ID
+                     'type'       => 'user',
+                     'user_id'    => $current_user->user_login,
+                     'email'      => $current_user->user_email,
+                     'name'       => $current_user->user_firstname.' '.$current_user->user_lastname,
+                     'created_at' => strtotime($current_user->user_registered),
 
                      // Intercom Custom Attributes http://bit.ly/2aZvEtb
-                     'wp_roles'          => implode(', ', $current_user->roles),
-                     'wp_edit_user_link' => get_edit_user_link($current_user->ID),
+                     'wp_roles'           => c::clip([implode(', ', $current_user->roles)], 255),
+                     'wp_edit_user_link'  => get_edit_user_link($current_user->ID),
+                     'wp_wc_downloads'    => !empty(wc_get_customer_available_downloads($current_user->ID)) ?  c::clip(implode(', ', wc_get_customer_available_downloads($current_user->ID)), 255) : '',
+                     'wp_wc_total_spent'  => wc_get_customer_total_spent($current_user->ID),
+                     'wp_wc_total_orders' => wc_get_customer_order_count($current_user->ID),
 
                      // @TODO Add other WooCommerce-related user-data, such has products purchased
             ];
