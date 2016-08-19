@@ -87,7 +87,7 @@ class Events extends SCoreClasses\SCore\Base\Core
 
         $payment_method       = (string) $WC_Order->payment_method; // e.g., `stripe`.
         $payment_method_title = (string) $WC_Order->payment_method_title; // e.g., Credit Card.
-        $currency_code        = (string) $WC_Order->get_order_currency(); // e.g., `USD`.
+        $currency_code        = (string) $WC_Order->get_currency(); // e.g., `USD`.
 
         if ($payment_method === 'stripe') {
             $stripe_customer_id = (string) $WC_Order->stripe_customer_id; // e.g., `cus_xxxx`.
