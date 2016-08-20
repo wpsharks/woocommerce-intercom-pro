@@ -83,19 +83,37 @@ class Events extends SCoreClasses\SCore\Base\Core
         $Intercom = new IntercomClient($app_id, $api_key);
 
         $user_id = (int) $WC_Order->get_user_id();
-        $email   = (string) $WC_Order->billing_email;
 
         $payment_method       = (string) $WC_Order->payment_method; // e.g., `stripe`.
-        $payment_method_title = (string) $WC_Order->payment_method_title; // e.g., Credit Card.
         $currency_code        = (string) $WC_Order->get_currency(); // e.g., `USD`.
 
         if ($payment_method === 'stripe') {
             $stripe_customer_id = (string) $WC_Order->stripe_customer_id; // e.g., `cus_xxxx`.
-            $stripe_card_id     = (string) $WC_Order->stripe_card_id; // e.g., `card_xxxx`.
-            $stripe_charge_id   = (string) $WC_Order->stripe_charge_id; // e.g., `charge_xxxx`.
         } else {
-            $stripe_customer_id = $stripe_card_id = $stripe_charge_id = '';
+            $stripe_customer_id = '';
         }
+
+        $_event_metadata = [ // Maximum of five metadata key values; leave room for possible Stripe Customer ID
+                             'order_number' => $WC_Order->get_order_number(),
+                             'order_status'   => $WC_Order->get_status(),
+                             'payment_method'  => $payment_method,
+                             'subtotal' => [
+                                 'currency' => $currency_code,
+                                 'amount'   => $WC_Order->get_subtotal(),
+                             ],
+        ];
+
+        if (!empty($stripe_customer_id)) { // Add Stripe Customer Data if available
+            $_event_metadata['stripe_customer'] = $stripe_customer_id;
+        }
+
+        $Intercom->events->create([
+            'created_at' => time(),
+            'event_name' => 'order',
+            'user_id'    => $user_id,
+            'metadata'   => $_event_metadata, // See: <https://developers.intercom.io/reference#event-metadata-types>
+        ]);
+
         foreach ($WC_Order->get_items() ?: [] as $_item_id => $_item) {
             if (!($_WC_Product = s::wcProductByOrderItemId($_item_id, $WC_Order))) {
                 continue; // Not a product or not possible.
