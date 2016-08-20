@@ -60,27 +60,28 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
      */
     protected function settings(): array
     {
+        return array_merge($this->standardAttributes(), $this->customAttributes());
+    }
+
+    /**
+     * Standard Attributes array.
+     *
+     * @since 000000 Initial release.
+     *
+     * @return array Standard Attributes.
+     */
+    protected function standardAttributes(): array
+    {
         if (is_user_logged_in()) { // Only logged-in users
             $current_user = wp_get_current_user();
 
-            return [ // Information about logged in user that should be appear as Custom Attributes
-
-                     // Intercom Standard Attributes https://developers.intercom.io/reference#user-model
+            return [ // Intercom Standard Attributes https://developers.intercom.io/reference#user-model
                      'app_id'     => s::getOption('app_id'), // Intercom App ID
                      'type'       => 'user',
-                     'user_id'    => $current_user->user_login,
+                     'user_id'    => $current_user->ID,
                      'email'      => $current_user->user_email,
                      'name'       => $current_user->user_firstname.' '.$current_user->user_lastname,
                      'created_at' => strtotime($current_user->user_registered),
-
-                     // Intercom Custom Attributes http://bit.ly/2aZvEtb
-                     'wp_roles'           => c::clip([implode(', ', $current_user->roles)], 255),
-                     'wp_edit_user_link'  => get_edit_user_link($current_user->ID),
-                     'wp_wc_downloads'    => !empty(wc_get_customer_available_downloads($current_user->ID)) ?  c::clip(implode(', ', wc_get_customer_available_downloads($current_user->ID)), 255) : '',
-                     'wp_wc_total_spent'  => wc_get_customer_total_spent($current_user->ID),
-                     'wp_wc_total_orders' => wc_get_customer_order_count($current_user->ID),
-
-                     // @TODO Add other WooCommerce-related user-data, such has products purchased
             ];
         } else { // Not logged in. @TODO Add support for Intercom Engage?
             return [
@@ -88,5 +89,32 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
             ];
         }
 
+    }
+
+    /**
+     * Custom Attributes array.
+     *
+     * @since 000000 Initial release.
+     *
+     * @return array Custom Attributes.
+     */
+    protected function customAttributes(): array
+    {
+        if (is_user_logged_in()) { // Only logged-in users
+            $current_user = wp_get_current_user();
+
+            return [ // Intercom Custom Attributes http://bit.ly/2aZvEtb
+                     'login'              => $current_user->user_login,
+                     'wp_roles'           => c::clip([implode(', ', $current_user->roles)], 255),
+                     'wp_edit_user_link'  => admin_url('user-edit.php?user_id='.$current_user->ID),
+                     'wp_wc_downloads'    => !empty(wc_get_customer_available_downloads($current_user->ID)) ? c::clip(implode(', ', wc_get_customer_available_downloads($current_user->ID)), 255) : '',
+                     'wp_wc_total_spent'  => wc_get_customer_total_spent($current_user->ID),
+                     'wp_wc_total_orders' => wc_get_customer_order_count($current_user->ID),
+
+                     // @TODO Add other WooCommerce-related user-data, such as products purchased
+            ];
+        } else { // Not logged in. @TODO Add support for Intercom Engage?
+            return [];
+        }
     }
 }
