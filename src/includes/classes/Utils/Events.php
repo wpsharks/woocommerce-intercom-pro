@@ -130,7 +130,7 @@ class Events extends SCoreClasses\SCore\Base\Core
                 'created_at' => time(),
                 'event_name' => 'purchased-item',
                 'user_id'    => $user_id, // Only User ID or Email, not both.
-                'metadata'   => [$_event_metadata], // See: <https://developers.intercom.io/reference#event-metadata-types>
+                'metadata'   => $_event_metadata, // See: <https://developers.intercom.io/reference#event-metadata-types>
             ]);
         } unset($_item_id, $_item, $_product, $_event_metadata); // Housekeeping.
     }
