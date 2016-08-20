@@ -112,13 +112,26 @@ class Events extends SCoreClasses\SCore\Base\Core
             $_product['qty']   = (int) max(1, (int) ($_item['qty'] ?? 1));
             $_product['total'] = (string) wc_format_decimal($_item['line_total'] ?? 0);
 
+            $_event_metadata = [ // Maximum of five metadata key values.
+                'title' => $_product['title'],
+                'sku'   => $_product['sku'],
+                'slug'  => $_product['slug'],
+                'price' => [
+                    'currency' => $currency_code,
+                    'amount'   => $_product['total'],
+                ],
+            ];
+
+            if (!empty($stripe_customer_id)) { // Add Stripe Customer Data if available
+                $_event_metadata['stripe_customer'] = $stripe_customer_id;
+            }
+
             $Intercom->events->create([
                 'created_at' => time(),
-                'event_name' => 'bought-product',
-                'user_id'    => $user_id,
-                'email'      => $email,
-                'metadata'   => [], // See: <https://developers.intercom.io/reference#event-metadata-types>
+                'event_name' => 'purchased-item',
+                'user_id'    => $user_id, // Only User ID or Email, not both.
+                'metadata'   => [$_event_metadata], // See: <https://developers.intercom.io/reference#event-metadata-types>
             ]);
-        } // unset($_item_id, $_item, $_product); // Housekeeping.
+        } unset($_item_id, $_item, $_product, $_event_metadata); // Housekeeping.
     }
 }
