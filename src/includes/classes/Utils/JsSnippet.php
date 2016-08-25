@@ -107,7 +107,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
                      'wp_login'            => $current_user->user_login,
                      'wp_user_edit'        => admin_url('user-edit.php?user_id='.$current_user->ID),
                      'available_downloads' => !empty(wc_get_customer_available_downloads($current_user->ID)) ? c::clip(implode(', ', wc_get_customer_available_downloads($current_user->ID)), 255) : '',
-                     'total_spent'         => wc_get_customer_total_spent($current_user->ID),
+                     'total_spent'         => !empty(wc_get_customer_total_spent($current_user->ID)) ? wc_get_customer_total_spent($current_user->ID) : '0.00',
                      'total_orders'        => wc_get_customer_order_count($current_user->ID),
                      'wp_roles'            => c::clip(implode(', ', $current_user->roles), 255),
 
