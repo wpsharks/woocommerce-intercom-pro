@@ -84,8 +84,9 @@ class Events extends SCoreClasses\SCore\Base\Core
 
         $user_id = (int) $WC_Order->get_user_id();
 
-        $payment_method       = (string) $WC_Order->payment_method; // e.g., `stripe`.
-        $currency_code        = (string) $WC_Order->get_currency(); // e.g., `USD`.
+        $payment_method = (string) $WC_Order->payment_method; // e.g., `stripe`.
+        $total          = (float) $WC_Order->get_total();
+        $currency_code  = !empty($payment_method) ? (string) $WC_Order->get_currency() : ''; // e.g., `USD`.
 
         if ($payment_method === 'stripe') {
             $stripe_customer_id = (string) $WC_Order->stripe_customer_id; // e.g., `cus_xxxx`.
@@ -106,8 +107,13 @@ class Events extends SCoreClasses\SCore\Base\Core
             }
             $_product['slug'] = (string) $_WC_Product->post->post_name;
 
-            $_order_skus[] = $_product['sku']; // Collect SKUs for reporting with Order Event below
-            $_order_slugs[] = $_product['slug']; // Collect Slugs for reporting with Order Event below
+            if(!empty($_product['sku'])) {
+                $_order_skus[] = $_product['sku'];
+            } // Collect SKUs for reporting with Order Event below
+
+            if(!empty($_product['slug'])) {
+                $_order_slugs[] = $_product['slug'];
+            } // Collect Slugs for reporting with Order Event below
 
             /* Per-Item Event tracking disabled for now.
             $_product['id']    = (int) $_WC_Product->get_id();
@@ -147,17 +153,17 @@ class Events extends SCoreClasses\SCore\Base\Core
                              ],
                              'subtotal'              => [
                                  'currency' => $currency_code,
-                                 'amount'   => $WC_Order->get_subtotal(),
+                                 'amount'   => $total,
                              ],
         ];
 
         if (!empty($_order_coupons = $WC_Order->get_used_coupons())) {
-            $_event_metadata['coupons'] = c::clip([implode(', ', $_order_coupons)], 255);
+            $_event_metadata['coupons'] = c::clip(implode(', ', $_order_coupons), 255);
         }
         if (!empty($_order_skus)) {
-            $_event_metadata['skus'] = c::clip([implode(', ', $_order_skus)], 255);
+            $_event_metadata['skus'] = c::clip(implode(', ', $_order_skus), 255);
         } elseif (!empty($_order_slugs)) {
-            $_event_metadata['slugs'] = c::clip([implode(', ', $_order_slugs)], 255);
+            $_event_metadata['slugs'] = c::clip(implode(', ', $_order_slugs), 255);
         }
         if (!empty($stripe_customer_id)) { // Add Stripe Customer Data if available
             $_event_metadata['stripe_customer'] = $stripe_customer_id;
