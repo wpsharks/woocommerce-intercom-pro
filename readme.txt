@@ -1,6 +1,6 @@
 === WooCommerce Intercom Pro ===
 
-Stable tag: 160809.39106
+Stable tag: 160825.82407
 
 Tested up to: 4.6
 Requires at least: 4.5.3

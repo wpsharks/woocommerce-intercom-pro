@@ -107,11 +107,11 @@ class Events extends SCoreClasses\SCore\Base\Core
             }
             $_product['slug'] = (string) $_WC_Product->post->post_name;
 
-            if(!empty($_product['sku'])) {
+            if (!empty($_product['sku'])) {
                 $_order_skus[] = $_product['sku'];
             } // Collect SKUs for reporting with Order Event below
 
-            if(!empty($_product['slug'])) {
+            if (!empty($_product['slug'])) {
                 $_order_slugs[] = $_product['slug'];
             } // Collect Slugs for reporting with Order Event below
 
@@ -147,11 +147,11 @@ class Events extends SCoreClasses\SCore\Base\Core
         // Now create a single `order` Event for the Order itself.
 
         $_event_metadata = [ // Maximum of five metadata key values; leave room for possible Stripe Customer ID
-                             'order_number'          => [
+                             'order_number' => [
                                  'value' => $WC_Order->get_order_number(),
-                                 'url' => admin_url('post.php?post='.$WC_Order->get_order_number().'&action=edit')
+                                 'url'   => admin_url('post.php?post='.$WC_Order->get_order_number().'&action=edit'),
                              ],
-                             'subtotal'              => [
+                             'subtotal' => [
                                  'currency' => $currency_code,
                                  'amount'   => $total,
                              ],
