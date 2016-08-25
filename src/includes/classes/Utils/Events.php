@@ -93,39 +93,25 @@ class Events extends SCoreClasses\SCore\Base\Core
             $stripe_customer_id = '';
         }
 
-        $_event_metadata = [ // Maximum of five metadata key values; leave room for possible Stripe Customer ID
-                             'order_number' => $WC_Order->get_order_number(),
-                             'order_status'   => $WC_Order->get_status(),
-                             'payment_method'  => $payment_method,
-                             'subtotal' => [
-                                 'currency' => $currency_code,
-                                 'amount'   => $WC_Order->get_subtotal(),
-                             ],
-        ];
-
-        if (!empty($stripe_customer_id)) { // Add Stripe Customer Data if available
-            $_event_metadata['stripe_customer'] = $stripe_customer_id;
-        }
-
-        $Intercom->events->create([
-            'created_at' => time(),
-            'event_name' => 'order',
-            'user_id'    => $user_id,
-            'metadata'   => $_event_metadata, // See: <https://developers.intercom.io/reference#event-metadata-types>
-        ]);
+        $_order_skus = $_order_slugs = []; // Initialize
 
         foreach ($WC_Order->get_items() ?: [] as $_item_id => $_item) {
             if (!($_WC_Product = s::wcProductByOrderItemId($_item_id, $WC_Order))) {
                 continue; // Not a product or not possible.
             }
-            $_product['id']    = (int) $_WC_Product->get_id();
-            $_product['title'] = (string) $_WC_Product->get_title();
 
             $_product['sku'] = (string) $_WC_Product->get_sku();
             if (!$_product['sku'] && $_WC_Product->product_type === 'variation' && $_WC_Product->parent) {
                 $_product['sku'] = (string) $_WC_Product->parent->get_sku();
             }
             $_product['slug'] = (string) $_WC_Product->post->post_name;
+
+            $_order_skus[] = $_product['sku']; // Collect SKUs for reporting with Order Event below
+            $_order_slugs[] = $_product['slug']; // Collect Slugs for reporting with Order Event below
+
+            /* Per-Item Event tracking disabled for now.
+            $_product['id']    = (int) $_WC_Product->get_id();
+            $_product['title'] = (string) $_WC_Product->get_title();
 
             $_product['qty']   = (int) max(1, (int) ($_item['qty'] ?? 1));
             $_product['total'] = (string) wc_format_decimal($_item['line_total'] ?? 0);
@@ -149,7 +135,41 @@ class Events extends SCoreClasses\SCore\Base\Core
                 'event_name' => 'purchased-item',
                 'user_id'    => $user_id, // Only User ID or Email, not both.
                 'metadata'   => $_event_metadata, // See: <https://developers.intercom.io/reference#event-metadata-types>
-            ]);
-        } unset($_item_id, $_item, $_product, $_event_metadata); // Housekeeping.
+            ]);*/
+        } /* unset($_item_id, $_item, $_product, $_event_metadata); // Housekeeping. */
+
+        // Now create a single `order` Event for the Order itself.
+
+        $_event_metadata = [ // Maximum of five metadata key values; leave room for possible Stripe Customer ID
+                             'order_number'          => [
+                                 'value' => $WC_Order->get_order_number(),
+                                 'url' => admin_url('post.php?post='.$WC_Order->get_order_number().'&action=edit')
+                             ],
+                             'subtotal'              => [
+                                 'currency' => $currency_code,
+                                 'amount'   => $WC_Order->get_subtotal(),
+                             ],
+        ];
+
+        if (!empty($_order_coupons = $WC_Order->get_used_coupons())) {
+            $_event_metadata['coupons'] = c::clip([implode(', ', $_order_coupons)], 255);
+        }
+        if (!empty($_order_skus)) {
+            $_event_metadata['skus'] = c::clip([implode(', ', $_order_skus)], 255);
+        } elseif (!empty($_order_slugs)) {
+            $_event_metadata['slugs'] = c::clip([implode(', ', $_order_slugs)], 255);
+        }
+        if (!empty($stripe_customer_id)) { // Add Stripe Customer Data if available
+            $_event_metadata['stripe_customer'] = $stripe_customer_id;
+        }
+
+        $Intercom->events->create([
+            'created_at' => time(),
+            'event_name' => 'placed-order',
+            'user_id'    => $user_id,
+            'metadata'   => $_event_metadata, // See: <https://developers.intercom.io/reference#event-metadata-types>
+        ]);
+
+        unset($_order_skus, $_order_slugs, $_order_coupons); // Housekeeping.
     }
 }
