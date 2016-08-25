@@ -104,11 +104,12 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
             $current_user = wp_get_current_user();
 
             return [ // Intercom Custom Attributes http://bit.ly/2aZvEtb
-                     'wp_login'  => ['value' => $current_user->user_login, 'url' => admin_url('user-edit.php?user_id='.$current_user->ID)],
-                     'available_downloads'    => !empty(wc_get_customer_available_downloads($current_user->ID)) ? c::clip(implode(', ', wc_get_customer_available_downloads($current_user->ID)), 255) : '',
-                     'total_spent'  => wc_get_customer_total_spent($current_user->ID),
-                     'total_orders' => wc_get_customer_order_count($current_user->ID),
-                     'wp_roles'           => c::clip([implode(', ', $current_user->roles)], 255),
+                     'wp_login'            => $current_user->user_login,
+                     'wp_user_edit'        => admin_url('user-edit.php?user_id='.$current_user->ID),
+                     'available_downloads' => !empty(wc_get_customer_available_downloads($current_user->ID)) ? c::clip(implode(', ', wc_get_customer_available_downloads($current_user->ID)), 255) : '',
+                     'total_spent'         => wc_get_customer_total_spent($current_user->ID),
+                     'total_orders'        => wc_get_customer_order_count($current_user->ID),
+                     'wp_roles'            => c::clip([implode(', ', $current_user->roles)], 255),
 
                      // @TODO Add other WooCommerce-related user-data, such as products purchased
             ];
