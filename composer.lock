@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b98c58a8f315ce321a94866e6fd7708a",
+    "hash": "d45889c2132fe10f41a4df49cf959fc3",
     "content-hash": "3d1836cb57bd959d9ca2ae46f8c81cd4",
     "packages": [
         {
@@ -180,16 +180,16 @@
         },
         {
             "name": "intercom/intercom-php",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/intercom/intercom-php.git",
-                "reference": "09fc0ce5f533ef34b9e67320154c61fe756a6e9a"
+                "reference": "afff207e3c0a28cff0ef38cc419f31391a632352"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/intercom/intercom-php/zipball/09fc0ce5f533ef34b9e67320154c61fe756a6e9a",
-                "reference": "09fc0ce5f533ef34b9e67320154c61fe756a6e9a",
+                "url": "https://api.github.com/repos/intercom/intercom-php/zipball/afff207e3c0a28cff0ef38cc419f31391a632352",
+                "reference": "afff207e3c0a28cff0ef38cc419f31391a632352",
                 "shasum": ""
             },
             "require": {
@@ -224,7 +224,7 @@
                 "intercom",
                 "intercom.io"
             ],
-            "time": "2016-07-18 13:59:56"
+            "time": "2016-08-10 15:41:25"
         },
         {
             "name": "psr/http-message",
@@ -282,12 +282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-php-rv.git",
-                "reference": "0e133e9da484f2adefd43c837f8b8f35e7e1618b"
+                "reference": "d889d4ac090d674153a8de1ec2ae927527d66d35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-php-rv/zipball/0e133e9da484f2adefd43c837f8b8f35e7e1618b",
-                "reference": "0e133e9da484f2adefd43c837f8b8f35e7e1618b",
+                "url": "https://api.github.com/repos/websharks/wp-php-rv/zipball/d889d4ac090d674153a8de1ec2ae927527d66d35",
+                "reference": "d889d4ac090d674153a8de1ec2ae927527d66d35",
                 "shasum": ""
             },
             "require": {
@@ -323,7 +323,7 @@
                 "wordpress",
                 "wpsharks"
             ],
-            "time": "2016-07-12 11:55:29"
+            "time": "2016-08-24 01:47:28"
         },
         {
             "name": "websharks/wp-sharks-core-rv",
