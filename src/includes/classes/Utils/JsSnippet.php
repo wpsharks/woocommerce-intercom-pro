@@ -31,14 +31,14 @@ use function get_defined_vars as vars;
 /**
  * JS snippet utils.
  *
- * @since 000000 Initial release.
+ * @since 160909.7530 Initial release.
  */
 class JsSnippet extends SCoreClasses\SCore\Base\Core
 {
     /**
      * On `wp_footer` hook.
      *
-     * @since 000000 Initial release.
+     * @since 160909.7530 Initial release.
      */
     public function onWpFooter()
     {
@@ -54,7 +54,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
     /**
      * Settings array.
      *
-     * @since 000000 Initial release.
+     * @since 160909.7530 Initial release.
      *
      * @return array Settings.
      */
@@ -66,7 +66,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
     /**
      * Standard Attributes array.
      *
-     * @since 000000 Initial release.
+     * @since 160909.7530 Initial release.
      *
      * @return array Standard Attributes.
      */
@@ -93,7 +93,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
     /**
      * Custom Attributes array.
      *
-     * @since 000000 Initial release.
+     * @since 160909.7530 Initial release.
      *
      * @return array Custom Attributes.
      */

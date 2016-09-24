@@ -33,14 +33,14 @@ use Intercom\IntercomClient;
 /**
  * Event utils.
  *
- * @since 000000 Initial release.
+ * @since 160909.7530 Initial release.
  */
 class Events extends SCoreClasses\SCore\Base\Core
 {
     /**
      * On `woocommerce_order_given` hook.
      *
-     * @since 000000 Initial release.
+     * @since 160909.7530 Initial release.
      *
      * @param string|int $order_id Order ID.
      */
@@ -52,7 +52,7 @@ class Events extends SCoreClasses\SCore\Base\Core
     /**
      * On `woocommerce_order_status_changed` hook.
      *
-     * @since 000000 Initial release.
+     * @since 160909.7530 Initial release.
      *
      * @param string|int $order_id   Order ID.
      * @param string     $old_status Old status prior to change.
@@ -68,7 +68,7 @@ class Events extends SCoreClasses\SCore\Base\Core
     /**
      * Intercom event create.
      *
-     * @since 000000 Initial release.
+     * @since 160909.7530 Initial release.
      *
      * @param string|int $order_id Order ID.
      */
