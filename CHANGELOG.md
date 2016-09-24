@@ -1,14 +1,11 @@
 ## [coming soon]
 
 - **Bug Fix:** Call to undefined method `WC_Order::get_currency()` should be `get_order_currency()`. Reported by @raamdev in [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/4).
-
 - **Compat:** Adding support for guest checkout events that track a customer by email address instead of by user ID. Closes [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/6).
-
 - **Cleanup:** Moving JS snippet into a template file w/ replacement code. Closes [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/8).
-
 - **Compat:** Updating `composer.json` to specify that we will use the Intercom SDK v3.x (but not 4.x) until a full review of a new major release has been completed.
-
 - **New Filter:** `add_filter('woocommerce_intercom_js_snippet_enable', '__return_false');` to disable the JS snippet selectively.
+- **Bug Fix:** In the Event API calls, `amount` must be given in **cents** (i.e., total x 100) for proper calculation on the Intercom side. Closes [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/17).
 
 ## v160909.7530
 
