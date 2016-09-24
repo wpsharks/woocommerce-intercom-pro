@@ -137,7 +137,7 @@ class Events extends SCoreClasses\SCore\Base\Core
                 'slug'  => $_product['slug'],
                 'price' => [
                     'currency' => $currency_code,
-                    'amount'   => $_product['total'],
+                    'amount'   => (int)($_product['total'] * 100),
                 ],
             ];
             if ($stripe_customer_id) { // Add Stripe customer data if available.
@@ -168,7 +168,7 @@ class Events extends SCoreClasses\SCore\Base\Core
              ],
              'subtotal' => [
                  'currency' => $currency_code,
-                 'amount'   => $total,
+                 'amount'   => (int) ($total * 100),
              ],
         ];
         if ($item_data['skus']) {
