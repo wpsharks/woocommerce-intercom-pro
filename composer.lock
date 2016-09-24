@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d45889c2132fe10f41a4df49cf959fc3",
-    "content-hash": "3d1836cb57bd959d9ca2ae46f8c81cd4",
+    "hash": "5d6f6bdd985c3922b681432ded0d3f23",
+    "content-hash": "9c92cb90da2c7f95e92810a81ed41f5a",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -282,12 +282,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-php-rv.git",
-                "reference": "d889d4ac090d674153a8de1ec2ae927527d66d35"
+                "reference": "ba924e906e842f6fe102f7cc74cfd00241ca45ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-php-rv/zipball/d889d4ac090d674153a8de1ec2ae927527d66d35",
-                "reference": "d889d4ac090d674153a8de1ec2ae927527d66d35",
+                "url": "https://api.github.com/repos/websharks/wp-php-rv/zipball/ba924e906e842f6fe102f7cc74cfd00241ca45ac",
+                "reference": "ba924e906e842f6fe102f7cc74cfd00241ca45ac",
                 "shasum": ""
             },
             "require": {
@@ -323,7 +323,7 @@
                 "wordpress",
                 "wpsharks"
             ],
-            "time": "2016-08-24 01:47:28"
+            "time": "2016-09-10 19:48:18"
         },
         {
             "name": "websharks/wp-sharks-core-rv",
@@ -331,12 +331,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/websharks/wp-sharks-core-rv.git",
-                "reference": "96601dcdf8153fe41b705d704196b28fa918ca3c"
+                "reference": "af49c0fa7eb60035bb1bd17b65d159669258479d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/96601dcdf8153fe41b705d704196b28fa918ca3c",
-                "reference": "96601dcdf8153fe41b705d704196b28fa918ca3c",
+                "url": "https://api.github.com/repos/websharks/wp-sharks-core-rv/zipball/af49c0fa7eb60035bb1bd17b65d159669258479d",
+                "reference": "af49c0fa7eb60035bb1bd17b65d159669258479d",
                 "shasum": ""
             },
             "require": {
@@ -371,7 +371,7 @@
                 "wordpress",
                 "wpsharks"
             ],
-            "time": "2016-07-12 12:03:01"
+            "time": "2016-09-10 19:44:12"
         }
     ],
     "packages-dev": [],
