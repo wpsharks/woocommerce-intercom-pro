@@ -6,6 +6,8 @@
 
 - **Cleanup:** Moving JS snippet into a template file w/ replacement code. Closes [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/8).
 
+- **Compat:** Updating `composer.json` to specify that we will use the Intercom SDK v3.x (but not 4.x) until a full review of a new major release has been completed.
+
 ## v160909.7530
 
 - **Bug Fix**: Fixed a "Notice: Array to string conversion" bug when getting available user downloads from WooCommerce. See [Issue #2](https://github.com/websharks/woocommerce-intercom-pro/issues/2).
