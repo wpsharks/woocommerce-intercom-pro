@@ -49,6 +49,8 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
             return; // Not possible.
         } elseif (!($settings = $this->settings())) {
             return; // Not applicable.
+        } elseif (!s::applyFilters('js_snippet_enable', true)) {
+            return; // Not applicable.
         }
         echo '<script type="text/javascript">';
         echo    'window.intercomSettings = '.json_encode($settings).';';
