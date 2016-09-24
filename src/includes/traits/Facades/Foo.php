@@ -31,12 +31,12 @@ use function get_defined_vars as vars;
 /**
  * Foo (example).
  *
- * @since 000000
+ * @since 160909.7530
  */
 trait Foo
 {
     /**
-     * @since 000000 Foo example.
+     * @since 160909.7530 Foo example.
      *
      * @param mixed ...$args Variadic args to underlying utility.
      *
