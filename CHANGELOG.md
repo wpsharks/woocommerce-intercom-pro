@@ -8,6 +8,8 @@
 
 - **Compat:** Updating `composer.json` to specify that we will use the Intercom SDK v3.x (but not 4.x) until a full review of a new major release has been completed.
 
+- **New Filter:** `add_filter('woocommerce_intercom_js_snippet_enable', '__return_false');` to disable the JS snippet selectively.
+
 ## v160909.7530
 
 - **Bug Fix**: Fixed a "Notice: Array to string conversion" bug when getting available user downloads from WooCommerce. See [Issue #2](https://github.com/websharks/woocommerce-intercom-pro/issues/2).
