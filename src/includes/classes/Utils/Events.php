@@ -79,12 +79,12 @@ class Events extends SCoreClasses\SCore\Base\Core
             return; // Not possible; debug this.
         } elseif (!($app_id = s::getOption('app_id'))) {
             return; // Not possible.
-        } elseif (!($app_key = s::getOption('app_key'))) {
+        } elseif (!($api_key = s::getOption('api_key'))) {
             return; // Not possible.
         }
         # Instantiate `Intercom` class.
 
-        $Intercom = new IntercomClient($app_id, $app_key);
+        $Intercom = new IntercomClient($app_id, $api_key);
 
         # Collect a few order variables needed below.
 
