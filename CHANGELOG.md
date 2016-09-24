@@ -2,7 +2,9 @@
 
 - **Bug Fix:** Call to undefined method `WC_Order::get_currency()` should be `get_order_currency()`. Reported by @raamdev in [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/4).
 
-- Adding support for guest checkout events that track a customer by email address instead of by user ID. Closes [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/6).
+- **Compat:** Adding support for guest checkout events that track a customer by email address instead of by user ID. Closes [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/6).
+
+- **Cleanup:** Moving JS snippet into a template file w/ replacement code. Closes [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/8).
 
 ## v160909.7530
 
