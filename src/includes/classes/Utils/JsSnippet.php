@@ -76,8 +76,9 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
 
                 'type'    => 'user',
                 'user_id' => $WP_User->ID,
-                'email'   => c::clip($WP_User->user_email, 255),
-                'name'    => c::clip(c::mbTrim($WP_User->first_name.' '.$WP_User->last_name), 255),
+
+                'email' => c::clip($WP_User->user_email, 255),
+                'name'  => c::clip(c::mbTrim($WP_User->first_name.' '.$WP_User->last_name), 255),
             ];
         } else { // @TODO Add support for Intercom Engage?
             return [
