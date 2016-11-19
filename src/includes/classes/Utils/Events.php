@@ -5,7 +5,7 @@
  * @author @raamdev
  * @copyright WP Sharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerceIntercom\Pro\Classes\Utils;
 
 use WebSharks\WpSharks\WooCommerceIntercom\Pro\Classes;
@@ -61,7 +61,7 @@ class Events extends SCoreClasses\SCore\Base\Core
     public function onWcOrderStatusChanged($order_id, string $old_status, string $new_status)
     {
         if (in_array($new_status, ['processing', 'completed'], true)) {
-            $this->eventCreate((int) $order_id);
+            $this->eventCreate((int) $order_id, $new_status);
         }
     }
 
@@ -71,8 +71,9 @@ class Events extends SCoreClasses\SCore\Base\Core
      * @since 160909.7530 Initial release.
      *
      * @param string|int $order_id Order ID.
+     * @param string     $status   The new status.
      */
-    protected function eventCreate(int $order_id)
+    protected function eventCreate(int $order_id, string $status)
     {
         if (!($WC_Order = wc_get_order($order_id))) {
             debug(0, c::issue(vars(), 'Missing order.'));
@@ -145,7 +146,7 @@ class Events extends SCoreClasses\SCore\Base\Core
             }
             $_event_data = [ // For API call; this pulls everything together.
                 // See: <https://developers.intercom.io/reference#submitting-events>
-                'event_name' => 'purchased-item',
+                'event_name' => 'item-'.$status,
                 'created_at' => time(),
                 'user_id'    => $user_id,
                 'metadata'   => $_event_metadata,
@@ -184,7 +185,7 @@ class Events extends SCoreClasses\SCore\Base\Core
         }
         $event_data = [ // For API call; this pulls everything together.
             // See: <https://developers.intercom.io/reference#submitting-events>
-            'event_name' => 'placed-order',
+            'event_name' => 'order-'.$status,
             'created_at' => time(),
             'user_id'    => $user_id,
             'metadata'   => $event_metadata,

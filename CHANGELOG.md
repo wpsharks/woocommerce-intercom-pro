@@ -1,5 +1,7 @@
 ## [coming soon]
 
+- Standardizing Event names sent to Intercom. New format: `order-[status]`. See [Issue #19](https://github.com/websharks/woocommerce-intercom-pro/issues/19).
+
 - Adding `wp_site` and `wp_uri` fields to JS Snippet to make it easier for support representatives to identify the origin of a customer request; e.g., whenever a single Intercom account is being used to support more then one WordPress installation, or multiple child sites/domains in a Multisite Network. See [Issue #22](https://github.com/websharks/woocommerce-intercom-pro/issues/22).
 
 - **Bug Fix:** Call to undefined method `WC_Order::get_currency()` should be `get_order_currency()`. Reported by @raamdev in [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/4).
