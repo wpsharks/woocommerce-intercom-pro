@@ -1,5 +1,9 @@
 ## [coming soon]
 
+- **New Feature:** Adding support for URI Inclusion patterns. See [Issue #12](https://github.com/websharks/woocommerce-intercom-pro/issues/12).
+
+- **New Feature:** Adding support for URI Exclusion patterns. See [Issue #12](https://github.com/websharks/woocommerce-intercom-pro/issues/12).
+
 - **Compatibility:** Deprecating API Key setting for Intercom in favor of a Personal Access Token. There is now a configuration field under: **WP Dashboard → WooCommerce → Intercom** settings where you can supply a Personal Access Token for API calls to Intercom. Use the instructions provided in this area to generate and fill-in your Personal Access Token. See [Issue #20](https://github.com/websharks/woocommerce-intercom-pro/issues/20).
 
   _**Note:** If you were previously using an Intercom API Key, it will continue to work, for now; but please provide a Personal Access Token to avoid problems in future releases of this plugin._
