@@ -5,7 +5,7 @@
  * @author @raamdev
  * @copyright WP Sharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerceIntercom\Pro\Classes\Utils;
 
 use WebSharks\WpSharks\WooCommerceIntercom\Pro\Classes;
@@ -111,6 +111,9 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
 
             return [ // Intercom Custom Attributes.
                 // See: <http://bit.ly/2aZvEtb> for details.
+
+                'wp_site' => c::clip(home_url('/'), 255),
+                'wp_uri'  => c::midClip(c::currentUri(), 255),
 
                 'wp_login'     => $WP_User->user_login,
                 'wp_roles'     => c::clip(implode(', ', $WP_User->roles), 255),
