@@ -64,7 +64,7 @@ $Form = $this->s::menuPageForm('§save-options');
     <hr />
 
     <?= $Form->openTable(
-        __('Icon Display Patterns', 'woocommerce-intercom'),
+        __('Icon Display Options', 'woocommerce-intercom'),
         __('These settings control which areas of your site should display the clickable Intercom icon. This is accomplished by matching patterns against any given URI. A URI is the <code>/path/</code> part of a URL; i.e., everything after the domain name. In many cases, just adding <code>^/**$</code> to the list of URI Inclusion Patterns is good enough. Note that <code>^/**$</code> matches all URIs. In other words, show the Intercom icon everywhere.', 'woocommerce-intercom')
     ); ?>
 
