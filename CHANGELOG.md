@@ -1,5 +1,9 @@
 ## [coming soon]
 
+- **Compatibility:** This release adds compatibility with WooCommerce Subscriptions. See [Issue #1](https://github.com/websharks/woocommerce-intercom-pro/issues/1).
+
+- **Compatibility:** This release adds support for all WooCommerce Order and/or Subscription status changes, including those added by WooCommerce extensions such as the WooCommerce Give Order extension. See [Issue #1](https://github.com/websharks/woocommerce-intercom-pro/issues/1).
+
 - **New Feature:** Adding support for URI Inclusion patterns. See [Issue #12](https://github.com/websharks/woocommerce-intercom-pro/issues/12).
 
 - **New Feature:** Adding support for URI Exclusion patterns. See [Issue #12](https://github.com/websharks/woocommerce-intercom-pro/issues/12).

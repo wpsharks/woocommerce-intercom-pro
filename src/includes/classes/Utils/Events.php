@@ -46,7 +46,7 @@ class Events extends SCoreClasses\SCore\Base\Core
      */
     public function onWcOrderGiven($order_id)
     {
-        $this->eventCreate((int) $order_id);
+        $this->createOrderEvent('order-given', (int) $order_id, __FUNCTION__);
     }
 
     /**
@@ -60,29 +60,64 @@ class Events extends SCoreClasses\SCore\Base\Core
      */
     public function onWcOrderStatusChanged($order_id, string $old_status, string $new_status)
     {
-        if (in_array($new_status, ['processing', 'completed'], true)) {
-            $this->eventCreate((int) $order_id, $new_status);
+        if ($new_status && !in_array($new_status, ['draft', 'pending'], true)) {
+            $this->createOrderEvent($new_status, (int) $order_id, __FUNCTION__);
         }
     }
 
     /**
-     * Intercom event create.
+     * On `woocommerce_subscription_status_changed` hook.
+     *
+     * @since 16xxxx Adding support for Subscriptions.
+     *
+     * @param string|int $subscription_id Subscription ID.
+     * @param string     $old_status      Old status prior to change.
+     * @param string     $new_status      The new status after this change.
+     */
+    public function onWcSubscriptionStatusChanged($subscription_id, string $old_status, string $new_status)
+    {
+        if ($new_status && !in_array($new_status, ['draft', 'pending'], true)) {
+            $this->createOrderEvent('subscription-'.$new_status, (int) $subscription_id, __FUNCTION__);
+        }
+    }
+
+    /**
+     * On `woocommerce_subscriptions_switched_item` hook.
+     *
+     * @since 16xxxx Adding support for Subscriptions.
+     *
+     * @param \WC_Subscription $WC_Subscription Subscription instance.
+     * @param array            $new_item        The new item data.
+     * @param array            $old_item        The old item data.
+     */
+    public function onWcSubscriptionItemSwitched(\WC_Subscription $WC_Subscription, array $new_item, array $old_item)
+    {
+        $this->createOrderEvent('subscription-switched', (int) $WC_Subscription->id, __FUNCTION__);
+    }
+
+    /**
+     * Create Intercom order event.
      *
      * @since 160909.7530 Initial release.
      *
-     * @param string|int $order_id Order ID.
-     * @param string     $status   The new status.
+     * @param string     $event_name Event name.
+     * @param string|int $order_id   WooCommerce order ID.
+     * @param string     $via        Caller; i.e., event created by.
      */
-    protected function eventCreate(int $order_id, string $status)
+    protected function createOrderEvent(string $event_name, int $order_id, string $via)
     {
-        if (!($WC_Order = wc_get_order($order_id))) {
+        if (!($app_id = s::getOption('app_id'))) {
+            return; // Not possible.
+        } elseif (!($api_token = s::getOption('api_token')) && !($api_key = s::getOption('api_key'))) {
+            return; // Not possible.
+        } elseif (!$event_name) {
+            debug(0, c::issue(vars(), 'Missing event name.'));
+            return; // Not possible.
+        } elseif (!($WC_Order = wc_get_order($order_id))) {
             debug(0, c::issue(vars(), 'Missing order.'));
-            return; // Not possible; debug this.
-        } elseif (!($app_id = s::getOption('app_id'))) {
             return; // Not possible.
-        } elseif (!($api_token = s::getOption('api_token'))
-                && !($api_key = s::getOption('api_key'))) {
-            return; // Not possible.
+        } elseif ($WC_Order->order_type === 'shop_subscription' && mb_stripos($via, 'subscription') === false) {
+            return; // Not applicable.
         }
         # Instantiate `Intercom` class.
 
@@ -135,6 +170,11 @@ class Events extends SCoreClasses\SCore\Base\Core
 
             /* Per-item event tracking has been disabled for now.
 
+            $_event_name = str_replace(
+                ['order-', 'subscription-'],
+                ['order-item-', 'subscription-item-'],
+                $event_name
+            );
             $_event_metadata = [ // Max of five keys.
                 // Leave a slot for Stripe Customer ID.
                 'title' => $_product['title'],
@@ -150,7 +190,7 @@ class Events extends SCoreClasses\SCore\Base\Core
             }
             $_event_data = [ // For API call; this pulls everything together.
                 // See: <https://developers.intercom.io/reference#submitting-events>
-                'event_name' => 'item-'.$status,
+                'event_name' => $_event_name,
                 'created_at' => time(),
                 'user_id'    => $user_id,
                 'metadata'   => $_event_metadata,
@@ -161,7 +201,7 @@ class Events extends SCoreClasses\SCore\Base\Core
             }
             $Intercom->events->create($_event_data);
             */
-        } // unset($_item_id, $_item, $_WC_Product, $_product, $_event_metadata, $_event_data);
+        } // unset($_item_id, $_item, $_WC_Product, $_product, $_event_metadata, $_event_data, $_event_name);
 
         # Now create a single `placed-order` event.
 
@@ -189,7 +229,7 @@ class Events extends SCoreClasses\SCore\Base\Core
         }
         $event_data = [ // For API call; this pulls everything together.
             // See: <https://developers.intercom.io/reference#submitting-events>
-            'event_name' => 'order-'.$status,
+            'event_name' => $event_name,
             'created_at' => time(),
             'user_id'    => $user_id,
             'metadata'   => $event_metadata,

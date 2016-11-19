@@ -148,6 +148,9 @@ class App extends SCoreClasses\App
         add_action('woocommerce_order_given', [$this->Utils->Events, 'onWcOrderGiven']);
         add_action('woocommerce_order_status_changed', [$this->Utils->Events, 'onWcOrderStatusChanged'], 10, 3);
 
+        add_action('woocommerce_subscription_status_changed', [$this->Utils->Events, 'onWcSubscriptionStatusChanged'], 10, 3);
+        add_action('woocommerce_subscriptions_switched_item', [$this->Utils->Events, 'onWcSubscriptionItemSwitched'], 1000, 3);
+
         add_action('wp_footer', [$this->Utils->JsSnippet, 'onWpFooter']);
     }
 }
