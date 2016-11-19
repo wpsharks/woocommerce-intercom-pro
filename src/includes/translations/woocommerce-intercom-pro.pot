@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the WooCommerce Intercom Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Intercom Pro 160924.36133\n"
+"Project-Id-Version: WooCommerce Intercom Pro 161119.68397\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-intercom-pro\n"
-"POT-Creation-Date: 2016-09-24 10:02:16+00:00\n"
+"POT-Creation-Date: 2016-11-19 19:00:00+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,15 +37,61 @@ msgid "Intercom App ID"
 msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:42
+msgid "e.g., G6z9edJfu3y"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:44
 msgid "Your App ID is available on the API Keys page on Intercom, accessible from your App Settings menu option."
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:50
-msgid "Intercom API Key"
+#: src/includes/templates/admin/menu-pages/options/default.php:52
+msgid "Personal Access Token"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:51
-msgid "Your API Keys are available on the API Keys page on Intercom, accessible from your App Settings menu option."
+#: src/includes/templates/admin/menu-pages/options/default.php:53
+msgid "e.g., yhgFvbENYQVCJETwGkBemk4PD7h3PuSDr5dNUv2dqaVzhpdYPkpTJWLQr5cYaSSx"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:55
+msgid "Generate a 'Personal Access Token' from the App Settings menu option at Intercom."
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:56
+msgid "Generate a 'Personal Access Token' at Intercom. See: <a href=\"%1$s\" target=\"_blank\">KB article/instructions</a>"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:67
+msgid "Icon Display Options"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:68
+msgid "These settings control which areas of your site should display the clickable Intercom icon. This is accomplished by matching patterns against any given URI. A URI is the <code>/path/</code> part of a URL; i.e., everything after the domain name. In many cases, just adding <code>^/**$</code> to the list of URI Inclusion Patterns is good enough. Note that <code>^/**$</code> matches all URIs. In other words, show the Intercom icon everywhere."
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:72
+msgid "URI Inclusion Patterns"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:73
+msgid "e.g., ^/**$"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:75
+#: src/includes/templates/admin/menu-pages/options/default.php:88
+msgid "A line-delimited list of patterns; i.e., one WRegx™ pattern per line please."
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:76
+#: src/includes/templates/admin/menu-pages/options/default.php:89
+msgid "To learn more about patterns, see: <a href=\"%1$s\" target=\"_blank\">WRegx™ KB Article</a>"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:85
+msgid "URI Exclusion Patterns"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:86
+msgid "e.g., ^/blog/**$"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
