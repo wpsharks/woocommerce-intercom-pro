@@ -71,11 +71,11 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
 
             return [ // Standard Intercom attributes.
                 // <https://developers.intercom.io/reference#user-model>.
-                'app_id'     => s::getOption('app_id'),
-                'created_at' => strtotime($WP_User->user_registered),
+                'app_id' => s::getOption('app_id'),
 
-                'type'    => 'user',
-                'user_id' => $WP_User->ID,
+                'type'       => 'user',
+                'user_id'    => $WP_User->ID,
+                'created_at' => strtotime($WP_User->user_registered),
 
                 'email' => c::clip($WP_User->user_email, 255),
                 'name'  => c::clip(c::mbTrim($WP_User->first_name.' '.$WP_User->last_name), 255),
