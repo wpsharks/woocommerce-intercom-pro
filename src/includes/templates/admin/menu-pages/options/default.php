@@ -5,7 +5,7 @@
  * @author @raamdev
  * @copyright WP Sharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerceIntercom\Pro;
 
 use WebSharks\WpSharks\WooCommerceIntercom\Pro\Classes;
@@ -38,20 +38,25 @@ $Form = $this->s::menuPageForm('§save-options');
     ); ?>
 
         <?= $Form->inputRow([
-            'label' => __('Intercom App ID', 'woocommerce-intercom'),
-            'tip'   => __('Your App ID is available on the API Keys page on Intercom, accessible from your App Settings menu option.', 'woocommerce-intercom'),
+            'label'       => __('Intercom App ID', 'woocommerce-intercom'),
+            'placeholder' => __('e.g., G6z9edJfu3y', 'woocommerce-intercom'),
+
+            'tip' => __('Your App ID is available on the API Keys page on Intercom, accessible from your App Settings menu option.', 'woocommerce-intercom'),
 
             'name'  => 'app_id',
             'value' => s::getOption('app_id'),
         ]); ?>
 
         <?= $Form->inputRow([
-            'type'  => 'password',
-            'label' => __('Intercom API Key', 'woocommerce-intercom'),
-            'tip'   => __('Your API Keys are available on the API Keys page on Intercom, accessible from your App Settings menu option.', 'woocommerce-intercom'),
+            'type'        => 'password',
+            'label'       => __('Personal Access Token', 'woocommerce-intercom'),
+            'placeholder' => __('e.g., yhgFvbENYQVCJETwGkBemk4PD7h3PuSDr5dNUv2dqaVzhpdYPkpTJWLQr5cYaSSx', 'woocommerce-intercom'),
 
-            'name'  => 'api_key',
-            'value' => s::getOption('api_key'),
+            'tip'  => __('Generate a \'Personal Access Token\' at Intercom.', 'woocommerce-intercom'),
+            'note' => sprintf(__('Generate a \'Personal Access Token\' at Intercom. See: <a href="%1$s" target="_blank">instructions</a>.', 'woocommerce-intercom'), esc_url(s::coreUrl('/r/woocommerce-intercom-pro-personal-access-token-instructions'))),
+
+            'name'  => 'api_token',
+            'value' => s::getOption('api_token'),
         ]); ?>
 
     <?= $Form->closeTable(); ?>

@@ -1,8 +1,12 @@
 ## [coming soon]
 
-- Standardizing Event names sent to Intercom. New format: `order-[status]`. See [Issue #19](https://github.com/websharks/woocommerce-intercom-pro/issues/19).
+- **Compatibility:** Deprecating API Key setting for Intercom in favor of a Personal Access Token. There is now a configuration field under: **WP Dashboard → WooCommerce → Intercom** settings where you can supply a Personal Access Token for API calls to Intercom. Use the instructions provided in this area to generate and fill-in your Personal Access Token. See [Issue #20](https://github.com/websharks/woocommerce-intercom-pro/issues/20).
 
-- Adding `wp_site` and `wp_uri` fields to JS Snippet to make it easier for support representatives to identify the origin of a customer request; e.g., whenever a single Intercom account is being used to support more then one WordPress installation, or multiple child sites/domains in a Multisite Network. See [Issue #22](https://github.com/websharks/woocommerce-intercom-pro/issues/22).
+  _**Note:** If you were previously using an Intercom API Key, it will continue to work, for now; but please provide a Personal Access Token to avoid problems in future releases of this plugin._
+
+- **Enhancement:** Standardizing Event names sent to Intercom. New format: `order-[status]`. See [Issue #19](https://github.com/websharks/woocommerce-intercom-pro/issues/19).
+
+- **Enhancement:** Adding `wp_site` and `wp_uri` fields to JS Snippet to make it easier for support representatives to identify the origin of a customer request; e.g., whenever a single Intercom account is being used to support more then one WordPress installation, or multiple child sites/domains in a Multisite Network. See [Issue #22](https://github.com/websharks/woocommerce-intercom-pro/issues/22).
 
 - **Bug Fix:** Call to undefined method `WC_Order::get_currency()` should be `get_order_currency()`. Reported by @raamdev in [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/4).
 

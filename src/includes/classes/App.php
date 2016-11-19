@@ -5,7 +5,7 @@
  * @author @raamdev
  * @copyright WP Sharks™
  */
-declare (strict_types = 1);
+declare(strict_types=1);
 namespace WebSharks\WpSharks\WooCommerceIntercom\Pro\Classes;
 
 use WebSharks\WpSharks\WooCommerceIntercom\Pro\Classes;
@@ -85,8 +85,9 @@ class App extends SCoreClasses\App
 
             '§pro_option_keys' => [],
             '§default_options' => [
-                'app_id'  => '',
-                'api_key' => '',
+                'app_id'    => '',
+                'api_token' => '',
+                'api_key'   => '',
             ],
 
             '§conflicts' => [
