@@ -125,7 +125,10 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
                 // @TODO Add other WooCommerce-related user-data, such as products purchased.
             ];
         } else { // @TODO Add support for Intercom Engage?
-            return [];
+            return [
+                'wp_site' => c::midClip(home_url('/'), 255),
+                'wp_uri'  => c::midClip(c::currentUri(), 255),
+            ];
         }
     }
 
