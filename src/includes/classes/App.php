@@ -88,6 +88,9 @@ class App extends SCoreClasses\App
                 'app_id'    => '',
                 'api_token' => '',
                 'api_key'   => '',
+
+                'uri_inclusions' => '^/**$',
+                'uri_exclusions' => '',
             ],
 
             '§conflicts' => [

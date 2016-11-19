@@ -39,17 +39,14 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
      * On `wp_footer` hook.
      *
      * @since 160909.7530 Initial release.
-     *
-     * @TODO Create a plugin option that lets you define the
-     *  scenarios where the widget should be loaded.
      */
     public function onWpFooter()
     {
         if (!($app_id = s::getOption('app_id'))) {
             return; // Not possible.
-        } elseif (!($settings = $this->settings())) {
+        } elseif (!$this->enabled()) {
             return; // Not applicable.
-        } elseif (!s::applyFilters('js_snippet_enable', true)) {
+        } elseif (!($settings = $this->settings())) {
             return; // Not applicable.
         }
         echo '<script type="text/javascript">';
@@ -141,5 +138,25 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
     protected function settings(): array
     {
         return array_merge($this->standardAttributes(), $this->customAttributes());
+    }
+
+    /**
+     * JS snippet enabled?
+     *
+     * @since 16xxxx Display options.
+     *
+     * @return bool True if enabled.
+     */
+    protected function enabled(): bool
+    {
+        $uri = c::currentUri();
+
+        $uri_inclusions = c::wRegx(s::getOption('uri_inclusions'));
+        $uri_exclusions = c::wRegx(s::getOption('uri_exclusions'));
+
+        $included = !$uri_inclusions || preg_match($uri_inclusions, $uri);
+        $excluded = !$included || ($uri_exclusions && preg_match($uri_exclusions, $uri));
+
+        return s::applyFilters('js_snippet_enable', $included && !$excluded);
     }
 }
