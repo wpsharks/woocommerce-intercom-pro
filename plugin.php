@@ -4,7 +4,7 @@
  *
  * @wp-plugin
  *
- * Version: 161119.68397
+ * Version: 161119.69337
  * Text Domain: woocommerce-intercom
  * Plugin Name: WooCommerce Intercom Pro
  *

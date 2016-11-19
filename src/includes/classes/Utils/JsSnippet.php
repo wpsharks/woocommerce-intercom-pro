@@ -76,8 +76,8 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
 
                 'type'    => 'user',
                 'user_id' => $WP_User->ID,
-                'email'   => $WP_User->user_email,
-                'name'    => c::mbTrim($WP_User->first_name.' '.$WP_User->last_name),
+                'email'   => c::clip($WP_User->user_email, 255),
+                'name'    => c::clip(c::mbTrim($WP_User->first_name.' '.$WP_User->last_name), 255),
             ];
         } else { // @TODO Add support for Intercom Engage?
             return [
@@ -109,12 +109,12 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
             return [ // Intercom Custom Attributes.
                 // See: <http://bit.ly/2aZvEtb> for details.
 
-                'wp_site' => c::clip(home_url('/'), 255),
+                'wp_site' => c::midClip(home_url('/'), 255),
                 'wp_uri'  => c::midClip(c::currentUri(), 255),
 
-                'wp_login'     => $WP_User->user_login,
+                'wp_login'     => c::clip($WP_User->user_login, 255),
                 'wp_roles'     => c::clip(implode(', ', $WP_User->roles), 255),
-                'wp_user_edit' => admin_url('/user-edit.php?user_id='.$WP_User->ID),
+                'wp_user_edit' => c::midClip(admin_url('/user-edit.php?user_id='.$WP_User->ID), 255),
 
                 'total_orders' => wc_get_customer_order_count($WP_User->ID),
                 'total_spent'  => sprintf('%0.2f', (float) wc_get_customer_total_spent($WP_User->ID)),
