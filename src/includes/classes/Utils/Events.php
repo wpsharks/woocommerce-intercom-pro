@@ -61,7 +61,7 @@ class Events extends SCoreClasses\SCore\Base\Core
     public function onWcOrderStatusChanged($order_id, string $old_status, string $new_status)
     {
         if ($new_status && !in_array($new_status, ['draft', 'pending'], true)) {
-            $this->createOrderEvent($new_status, (int) $order_id, __FUNCTION__);
+            $this->createOrderEvent('order-'.$new_status, (int) $order_id, __FUNCTION__);
         }
     }
 
