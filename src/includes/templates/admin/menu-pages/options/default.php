@@ -104,9 +104,9 @@ $Form = $this->s::menuPageForm('§save-options');
             'value' => s::getOption('display_if_logged'),
 
             'options' => [
-                'in'        => __('show it to logged-in users only'),
-                'out'       => __('show it to logged-out users only'),
-                'in-or-out' => __('show it to logged-in &amp; logged-out users'),
+                'in'        => __('show it to logged-in users only', 'woocommerce-intercom'),
+                'out'       => __('show it to logged-out users only', 'woocommerce-intercom'),
+                'in-or-out' => __('show it to logged-in &amp; logged-out users', 'woocommerce-intercom'),
             ],
         ]); ?>
 

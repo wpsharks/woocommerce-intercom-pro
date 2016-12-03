@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Intercom Pro 161124.6961-RC\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-intercom-pro\n"
-"POT-Creation-Date: 2016-11-24 01:57:24+00:00\n"
+"POT-Creation-Date: 2016-12-03 16:01:18+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -61,11 +61,11 @@ msgid "Generate a 'Personal Access Token' at Intercom. See: <a href=\"%1$s\" tar
 msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:67
-msgid "Icon Display Options"
+msgid "Messenger Display Options"
 msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:68
-msgid "These settings control which areas of your site should display the clickable Intercom icon. This is accomplished by matching patterns against any given URI. A URI is the <code>/path/</code> part of a URL; i.e., everything after the domain name. In many cases, just adding <code>^/**$</code> to the list of URI Inclusion Patterns is good enough. Note that <code>^/**$</code> matches all URIs. In other words, show the Intercom icon everywhere."
+msgid "These settings control which areas of your site should display the clickable Intercom Messenger icon. This is accomplished by matching patterns against any given URI. A URI is the <code>/path/</code> part of a URL (everything after the domain name). The default behavior, when you have no inclusion/exclusion patterns, is to show the Messenger on every page of the site."
 msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:72
@@ -73,7 +73,7 @@ msgid "URI Inclusion Patterns"
 msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:73
-msgid "e.g., ^/**$"
+msgid "e.g., ^/support/**$"
 msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:75
@@ -83,7 +83,7 @@ msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:76
 #: src/includes/templates/admin/menu-pages/options/default.php:89
-msgid "To learn more about patterns, see: <a href=\"%1$s\" target=\"_blank\">WRegx™ KB Article</a>"
+msgid "One pattern per line. To learn more about patterns, see: <a href=\"%1$s\" target=\"_blank\">WRegx™ KB Article</a>"
 msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:85
@@ -92,6 +92,30 @@ msgstr ""
 
 #: src/includes/templates/admin/menu-pages/options/default.php:86
 msgid "e.g., ^/blog/**$"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:98
+msgid "Logged-In User Status"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:100
+msgid "The Intercom 'Acquire' service must be enabled in your Intercom account if you want to display the Messenger to users who aren't logged-in."
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:101
+msgid "<a href=\"%1$s\" target=\"_blank\">Intercom Acquire</a> must be enabled in your Intercom account if you'd like to chat with users who aren't logged-in."
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:107
+msgid "show it to logged-in users only"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:108
+msgid "show it to logged-out users only"
+msgstr ""
+
+#: src/includes/templates/admin/menu-pages/options/default.php:109
+msgid "show it to logged-in &amp; logged-out users"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
