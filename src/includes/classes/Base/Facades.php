@@ -35,5 +35,5 @@ use function get_defined_vars as vars;
  */
 abstract class Facades
 {
-    use Traits\Facades\Foo;
+    use Traits\Facades\User;
 }

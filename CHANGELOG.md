@@ -1,5 +1,17 @@
 ## [coming soon]
 
+- **New Feature:** It is now possible to configure the Intercom Messenger icon display settings so that it's only shown to logged-in users, only to logged-out users, or to everyone (default behavior). See: **Dashboard → WooCommerce → Intercom → Messenger Display Options**.
+
+- **Intercom `user_id`:** This release changes the way an Intercom `user_id` is generated. Instead of just the WP User ID, the Intercom `user_id` is now formulated in a way that allows a single Intercom account to be used for multiple installations of WordPress. The `user_id` sent to Intercom is now made up of two parts. 1. A hash of the current WordPress `home_url()` (normalized). 2. The current user's WordPress ID (or, in the case of guest checkout, an `e-`, followed by a hash of the user's email address). The final `user_id` becomes: `[location hash].[user ID]`; e.g., `3610a686.123`, `3610a686.e-9943c993` (guest).
+
+- **New People Attribute:** This release adds a new People Attribute by the name of `wp_user_id`, giving support reps. the ability to track WP User IDs in Intercom.
+
+- **Bug Fix:** Before a new Event is generated to track a user's Order or Subscription status on the Intercom side, a new API call is now made to ensure that a matching User does in fact exist on the Intercom side before an Event is created. This corrects a problem reported in the previous release that resulted in an error during checkout: `User Not Found`. See [Issue #6](https://github.com/websharks/woocommerce-intercom-pro/issues/6#issuecomment-263278631)
+
+- **New Filter:** A new filter has been exposed: `js_snippet_attrs`. This allows a developer to add their own custom attributes; above and beyond what is already defined by WooCommerce Intercom Pro itself.
+
+- **Compatibility:** Adding support and compatibility with WPML's `ICL_LANGUAGE_CODE` so the Intercom messenger will always be displayed in an appropriate language.
+
 - **Compatibility:** This release adds compatibility with WooCommerce Subscriptions. See [Issue #1](https://github.com/websharks/woocommerce-intercom-pro/issues/1).
 
 - **Compatibility:** This release adds support for all WooCommerce Order and/or Subscription status changes, including those added by WooCommerce extensions such as the WooCommerce Give Order extension. See [Issue #1](https://github.com/websharks/woocommerce-intercom-pro/issues/1).
@@ -8,13 +20,11 @@
 
 - **New Feature:** Adding support for URI Exclusion patterns. See [Issue #12](https://github.com/websharks/woocommerce-intercom-pro/issues/12).
 
-- **Compatibility:** Deprecating API Key setting for Intercom in favor of a Personal Access Token. There is now a configuration field under: **WP Dashboard → WooCommerce → Intercom** settings where you can supply a Personal Access Token for API calls to Intercom. Use the instructions provided in this area to generate and fill-in your Personal Access Token. See [Issue #20](https://github.com/websharks/woocommerce-intercom-pro/issues/20).
-
-  _**Note:** If you were previously using an Intercom API Key, it will continue to work, for now; but please provide a Personal Access Token to avoid problems in future releases of this plugin._
+- **Compatibility:** Removing API Key setting for Intercom in favor of a Personal Access Token. There is now a configuration field under: **WP Dashboard → WooCommerce → Intercom** settings where you can supply a Personal Access Token for API calls to Intercom. Use the instructions provided in this area to generate and fill-in your Personal Access Token. See [Issue #20](https://github.com/websharks/woocommerce-intercom-pro/issues/20).
 
 - **Enhancement:** Standardizing Event names sent to Intercom. New format: `order-[status]`. See [Issue #19](https://github.com/websharks/woocommerce-intercom-pro/issues/19).
 
-- **Enhancement:** Adding `wp_site` and `wp_uri` fields to JS Snippet to make it easier for support representatives to identify the origin of a customer request; e.g., whenever a single Intercom account is being used to support more then one WordPress installation, or multiple child sites/domains in a Multisite Network. See [Issue #22](https://github.com/websharks/woocommerce-intercom-pro/issues/22).
+- **Enhancement:** Adding `wp_home_url` and `wp_network_home_url` fields to JS Snippet to make it easier for support representatives to identify the origin of a customer request; e.g., whenever a single Intercom account is being used to support more then one WordPress installation, or multiple child sites/domains in a Multisite Network. See [Issue #22](https://github.com/websharks/woocommerce-intercom-pro/issues/22).
 
 - **Bug Fix:** Call to undefined method `WC_Order::get_currency()` should be `get_order_currency()`. Reported by @raamdev in [this GitHub issue](https://github.com/websharks/woocommerce-intercom-pro/issues/4).
 

@@ -31,7 +31,7 @@
     "websharks/wp-php-rv": "dev-master",
     "websharks/wp-sharks-core-rv": "dev-master",
 
-    "intercom/intercom-php": "3.*"
+    "intercom/intercom-php": "3.0.2"
   },
   "require-dev": {},
 

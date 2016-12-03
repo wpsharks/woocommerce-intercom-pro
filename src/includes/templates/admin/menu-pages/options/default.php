@@ -64,16 +64,16 @@ $Form = $this->s::menuPageForm('§save-options');
     <hr />
 
     <?= $Form->openTable(
-        __('Icon Display Options', 'woocommerce-intercom'),
-        __('These settings control which areas of your site should display the clickable Intercom icon. This is accomplished by matching patterns against any given URI. A URI is the <code>/path/</code> part of a URL; i.e., everything after the domain name. In many cases, just adding <code>^/**$</code> to the list of URI Inclusion Patterns is good enough. Note that <code>^/**$</code> matches all URIs. In other words, show the Intercom icon everywhere.', 'woocommerce-intercom')
+        __('Messenger Display Options', 'woocommerce-intercom'),
+        __('These settings control which areas of your site should display the clickable Intercom Messenger icon. This is accomplished by matching patterns against any given URI. A URI is the <code>/path/</code> part of a URL (everything after the domain name). The default behavior, when you have no inclusion/exclusion patterns, is to show the Messenger on every page of the site.', 'woocommerce-intercom')
     ); ?>
 
         <?= $Form->textareaRow([
             'label'       => __('URI Inclusion Patterns', 'woocommerce-intercom'),
-            'placeholder' => __('e.g., ^/**$', 'woocommerce-intercom'),
+            'placeholder' => __('e.g., ^/support/**$', 'woocommerce-intercom'),
 
             'tip'  => __('A line-delimited list of patterns; i.e., one WRegx™ pattern per line please.', 'woocommerce-intercom'),
-            'note' => sprintf(__('To learn more about patterns, see: <a href="%1$s" target="_blank">WRegx™ KB Article</a>', 'woocommerce-intercom'), esc_url(s::coreUrl('/r/wregx-patterns'))),
+            'note' => sprintf(__('One pattern per line. To learn more about patterns, see: <a href="%1$s" target="_blank">WRegx™ KB Article</a>', 'woocommerce-intercom'), esc_url(s::coreUrl('/r/wregx-patterns'))),
 
             'name'  => 'uri_inclusions',
             'value' => s::getOption('uri_inclusions'),
@@ -86,12 +86,28 @@ $Form = $this->s::menuPageForm('§save-options');
             'placeholder' => __('e.g., ^/blog/**$', 'woocommerce-intercom'),
 
             'tip'  => __('A line-delimited list of patterns; i.e., one WRegx™ pattern per line please.', 'woocommerce-intercom'),
-            'note' => sprintf(__('To learn more about patterns, see: <a href="%1$s" target="_blank">WRegx™ KB Article</a>', 'woocommerce-intercom'), esc_url(s::coreUrl('/r/wregx-patterns'))),
+            'note' => sprintf(__('One pattern per line. To learn more about patterns, see: <a href="%1$s" target="_blank">WRegx™ KB Article</a>', 'woocommerce-intercom'), esc_url(s::coreUrl('/r/wregx-patterns'))),
 
             'name'  => 'uri_exclusions',
             'value' => s::getOption('uri_exclusions'),
 
             'attrs' => 'wrap="off" spellcheck="false"',
+        ]); ?>
+
+        <?= $Form->selectRow([
+            'label' => __('Logged-In User Status', 'woocommerce-intercom'),
+
+            'tip'  => __('The Intercom \'Acquire\' service must be enabled in your Intercom account if you want to display the Messenger to users who aren\'t logged-in.', 'woocommerce-intercom'),
+            'note' => sprintf(__('<a href="%1$s" target="_blank">Intercom Acquire</a> must be enabled in your Intercom account if you\'d like to chat with users who aren\'t logged-in.', 'woocommerce-intercom'), esc_url(s::coreUrl('/r/intercom-acquire'))),
+
+            'name'  => 'display_if_logged',
+            'value' => s::getOption('display_if_logged'),
+
+            'options' => [
+                'in'        => __('show it to logged-in users only'),
+                'out'       => __('show it to logged-out users only'),
+                'in-or-out' => __('show it to logged-in &amp; logged-out users'),
+            ],
         ]); ?>
 
     <?= $Form->closeTable(); ?>

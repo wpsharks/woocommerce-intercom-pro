@@ -108,7 +108,7 @@ class Events extends SCoreClasses\SCore\Base\Core
     {
         if (!($app_id = s::getOption('app_id'))) {
             return; // Not possible.
-        } elseif (!($api_token = s::getOption('api_token')) && !($api_key = s::getOption('api_key'))) {
+        } elseif (!($api_token = s::getOption('api_token'))) {
             return; // Not possible.
         } elseif (!$event_name) {
             debug(0, c::issue(vars(), 'Missing event name.'));
@@ -116,20 +116,34 @@ class Events extends SCoreClasses\SCore\Base\Core
         } elseif (!($WC_Order = wc_get_order($order_id))) {
             debug(0, c::issue(vars(), 'Missing order.'));
             return; // Not possible.
-        } elseif ($WC_Order->order_type === 'shop_subscription' && mb_stripos($via, 'subscription') === false) {
-            return; // Not applicable.
         }
-        # Instantiate `Intercom` class.
+        $is_subscription = $WC_Order->order_type === 'shop_subscription';
 
-        if ($api_token) { // Prefer token.
-            $Intercom = new IntercomClient($api_token, null);
-        } else { // Backward compatibility.
-            $Intercom = new IntercomClient($app_id, $api_key);
-        }
-        # Collect a few order variables needed below.
+        # Collect a few variables needed below.
 
-        $user_id       = (int) $WC_Order->get_user_id();
+        $current_time = time(); // UTC time.
+
+        $wp_user_id = (int) $WC_Order->get_user_id();
+        $WP_User    = new \WP_User($wp_user_id);
+
         $billing_email = (string) $WC_Order->billing_email;
+        $billing_name  = c::mbTrim((string) $WC_Order->get_formatted_billing_full_name());
+
+        $user_id = a::userId([
+            'id'    => $WP_User->ID,
+            'email' => $WP_User->user_email ?: $billing_email,
+        ]);
+        $user_info = [
+            'id'    => $WP_User->ID,
+            'name'  => $WP_User->display_name ?: $billing_name,
+            'email' => $WP_User->user_email ?: $billing_email,
+        ];
+        # Make sure we have this user on the Intercom side.
+
+        if (!a::userUpdate($user_info)) {
+            return; // Not possible in this case.
+        }
+        # Collect additional variables needed below.
 
         $total          = (float) $WC_Order->get_total();
         $payment_method = (string) $WC_Order->payment_method;
@@ -142,6 +156,14 @@ class Events extends SCoreClasses\SCore\Base\Core
         }
         $item_data = []; // Initialize; collect below.
 
+        # Instantiate `Intercom` class.
+
+        try { // Catch Intercom exceptions.
+            $Intercom = new IntercomClient($api_token, null);
+        } catch (\Throwable $Exception) {
+            c::review(vars(), 'Intercom client exception.');
+            return; // Stop here; soft failure.
+        }
         # Iterate all of the items in this order.
 
         foreach ($WC_Order->get_items() ?: [] as $_item_id => $_item) {
@@ -174,7 +196,8 @@ class Events extends SCoreClasses\SCore\Base\Core
                 ['order-', 'subscription-'],
                 ['order-item-', 'subscription-item-'],
                 $event_name
-            );
+            ); // Rewrite as order or subscription 'item'.
+
             $_event_metadata = [ // Max of five keys.
                 // Leave a slot for Stripe Customer ID.
                 'title' => $_product['title'],
@@ -190,16 +213,16 @@ class Events extends SCoreClasses\SCore\Base\Core
             }
             $_event_data = [ // For API call; this pulls everything together.
                 // See: <https://developers.intercom.io/reference#submitting-events>
-                'event_name' => $_event_name,
-                'created_at' => time(),
                 'user_id'    => $user_id,
+                'event_name' => $_event_name,
+                'created_at' => $current_time,
                 'metadata'   => $_event_metadata,
             ];
-            if (!$_event_data['user_id']) {
-                unset($_event_data['user_id']);
-                $_event_data['email'] = $billing_email;
+            try { // Catch Intercom exceptions.
+                $Intercom->events->create($_event_data);
+            } catch (\Throwable $Exception) {
+                c::review(vars(), 'Event creation exception.');
             }
-            $Intercom->events->create($_event_data);
             */
         } // unset($_item_id, $_item, $_WC_Product, $_product, $_event_metadata, $_event_data, $_event_name);
 
@@ -207,7 +230,7 @@ class Events extends SCoreClasses\SCore\Base\Core
 
         $event_metadata = [ // Max of five keys.
             // Leave a slot for Stripe Customer ID.
-             'order_number' => [
+             ($is_subscription ? 'subscription' : 'order').'_id' => [
                  'value' => $order_id,
                  'url'   => admin_url('/post.php?post='.$order_id.'&action=edit'),
              ],
@@ -229,15 +252,15 @@ class Events extends SCoreClasses\SCore\Base\Core
         }
         $event_data = [ // For API call; this pulls everything together.
             // See: <https://developers.intercom.io/reference#submitting-events>
-            'event_name' => $event_name,
-            'created_at' => time(),
             'user_id'    => $user_id,
+            'event_name' => $event_name,
+            'created_at' => $current_time,
             'metadata'   => $event_metadata,
         ];
-        if (!$event_data['user_id']) {
-            unset($event_data['user_id']);
-            $event_data['email'] = $billing_email;
+        try { // Catch Intercom exceptions.
+            $Intercom->events->create($event_data);
+        } catch (\Throwable $Exception) {
+            c::review(vars(), 'Event creation exception.');
         }
-        $Intercom->events->create($event_data);
     }
 }
