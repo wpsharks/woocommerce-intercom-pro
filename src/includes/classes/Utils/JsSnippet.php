@@ -70,7 +70,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
 
         $uri_inclusions    = c::wRegx(s::getOption('uri_inclusions'));
         $uri_exclusions    = c::wRegx(s::getOption('uri_exclusions'));
-        $display_if_logged = s::getOption('uri_exclusions');
+        $display_if_logged = s::getOption('display_if_logged');
 
         $included = !$uri_inclusions || preg_match($uri_inclusions, $uri);
         $excluded = !$included || ($uri_exclusions && preg_match($uri_exclusions, $uri));
