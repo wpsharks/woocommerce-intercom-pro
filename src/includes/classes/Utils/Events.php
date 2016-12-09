@@ -68,7 +68,7 @@ class Events extends SCoreClasses\SCore\Base\Core
     /**
      * On `woocommerce_subscription_status_changed` hook.
      *
-     * @since 16xxxx Adding support for Subscriptions.
+     * @since 161209.85885 Adding support for Subscriptions.
      *
      * @param string|int $subscription_id Subscription ID.
      * @param string     $old_status      Old status prior to change.
@@ -84,7 +84,7 @@ class Events extends SCoreClasses\SCore\Base\Core
     /**
      * On `woocommerce_subscriptions_switched_item` hook.
      *
-     * @since 16xxxx Adding support for Subscriptions.
+     * @since 161209.85885 Adding support for Subscriptions.
      *
      * @param \WC_Subscription $WC_Subscription Subscription instance.
      * @param array            $new_item        The new item data.

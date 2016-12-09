@@ -33,14 +33,14 @@ use Intercom\IntercomClient;
 /**
  * User utils.
  *
- * @since 16xxxx Initial release.
+ * @since 161209.85885 Initial release.
  */
 class User extends SCoreClasses\SCore\Base\Core
 {
     /**
      * User ID for Intercom.
      *
-     * @since 16xxxx Initial release.
+     * @since 161209.85885 Initial release.
      *
      * @param array $args Input arguments.
      *
@@ -74,7 +74,7 @@ class User extends SCoreClasses\SCore\Base\Core
     /**
      * Update Intercom user.
      *
-     * @since 16xxxx Initial release.
+     * @since 161209.85885 Initial release.
      *
      * @param array $args Input arguments.
      *
@@ -122,7 +122,7 @@ class User extends SCoreClasses\SCore\Base\Core
     /**
      * User standard attributes.
      *
-     * @since 16xxxx Initial release.
+     * @since 161209.85885 Initial release.
      *
      * @param array $args Input arguments.
      *
@@ -171,7 +171,7 @@ class User extends SCoreClasses\SCore\Base\Core
     /**
      * User custom attributes.
      *
-     * @since 16xxxx Initial release.
+     * @since 161209.85885 Initial release.
      *
      * @param \WP_User $WP_User User object.
      * @param int      $blog_id Blog ID.
@@ -208,7 +208,7 @@ class User extends SCoreClasses\SCore\Base\Core
     /**
      * User site attributes.
      *
-     * @since 16xxxx Initial release.
+     * @since 161209.85885 Initial release.
      *
      * @param int $blog_id Blog ID.
      *
