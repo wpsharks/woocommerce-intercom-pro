@@ -60,7 +60,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
     /**
      * JS snippet enabled?
      *
-     * @since 16xxxx Display options.
+     * @since 161209.85885 Display options.
      *
      * @return bool True if enabled.
      */
@@ -88,7 +88,7 @@ class JsSnippet extends SCoreClasses\SCore\Base\Core
     /**
      * Attribues array.
      *
-     * @since 16xxxx User utils.
+     * @since 161209.85885 User utils.
      *
      * @return array Attribues array.
      */

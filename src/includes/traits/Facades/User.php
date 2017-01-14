@@ -31,12 +31,12 @@ use function get_defined_vars as vars;
 /**
  * User.
  *
- * @since 16xxxx
+ * @since 161209.85885
  */
 trait User
 {
     /**
-     * @since 16xxxx User utils.
+     * @since 161209.85885 User utils.
      *
      * @param mixed ...$args Variadic args to underlying utility.
      *
@@ -48,7 +48,7 @@ trait User
     }
 
     /**
-     * @since 16xxxx User utils.
+     * @since 161209.85885 User utils.
      *
      * @param mixed ...$args Variadic args to underlying utility.
      *
@@ -60,7 +60,7 @@ trait User
     }
 
     /**
-     * @since 16xxxx User utils.
+     * @since 161209.85885 User utils.
      *
      * @param mixed ...$args Variadic args to underlying utility.
      *
@@ -72,7 +72,7 @@ trait User
     }
 
     /**
-     * @since 16xxxx User utils.
+     * @since 161209.85885 User utils.
      *
      * @param mixed ...$args Variadic args to underlying utility.
      *
