@@ -11,7 +11,7 @@ namespace WebSharks\WpSharks\WooCommerceIntercom\Pro;
 use WebSharks\WpSharks\WooCommerceIntercom\Pro\Classes\App;
 
 if (!defined('WPINC')) {
-    exit('Do NOT access this file directly: '.basename(__FILE__));
+    exit('Do NOT access this file directly.');
 }
 add_action('plugins_loaded', function () {
     require __DIR__.'/wp-sharks-core-rv.php';

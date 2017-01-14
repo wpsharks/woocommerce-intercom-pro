@@ -1,5 +1,7 @@
 ## [coming soon]
 
+- Enhancing security by removing `basename(__FILE__)` from direct access notices.
+
 - **New Feature:** It is now possible to configure the Intercom Messenger icon display settings so that it's only shown to logged-in users, only to logged-out users, or to everyone (default behavior). See: **Dashboard → WooCommerce → Intercom → Messenger Display Options**.
 
 - **Intercom `user_id`:** This release changes the way an Intercom `user_id` is generated. Instead of just the WP User ID, the Intercom `user_id` is now formulated in a way that allows a single Intercom account to be used for multiple installations of WordPress. The `user_id` sent to Intercom is now made up of two parts. 1. A hash of the current WordPress `home_url()` (normalized). 2. The current user's WordPress ID (or, in the case of guest checkout, an `e-`, followed by a hash of the user's email address). The final `user_id` becomes: `[location hash].[user ID]`; e.g., `3610a686.123`, `3610a686.e-9943c993` (guest).
