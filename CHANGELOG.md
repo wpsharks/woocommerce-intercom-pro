@@ -1,5 +1,6 @@
 ## $v
 
+- Updating minimum required version of the WP Sharks Core.
 - Enhancing security by removing `basename(__FILE__)` from direct access notices.
 
 ## v161209.85885

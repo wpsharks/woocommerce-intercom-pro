@@ -1,14 +1,14 @@
-# Copyright (C) 2016 WooCommerce Intercom Pro
+# Copyright (C) 2017 WooCommerce Intercom Pro
 # This file is distributed under the same license as the WooCommerce Intercom Pro package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Intercom Pro 161209.85885\n"
+"Project-Id-Version: WooCommerce Intercom Pro 170128.2085\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/woocommerce-intercom-pro\n"
-"POT-Creation-Date: 2016-12-09 23:51:46+00:00\n"
+"POT-Creation-Date: 2017-01-28 00:34:53+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
@@ -24,97 +24,97 @@ msgstr ""
 msgid "Restore Default Options"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:36
+#: src/includes/templates/admin/menu-pages/options/default.php:39
 msgid "General Options"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:37
+#: src/includes/templates/admin/menu-pages/options/default.php:40
 msgid "You can browse <em>our</em> <a href=\"%1$s\" target=\"_blank\">knowledge base</a> to learn more about these options."
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:41
+#: src/includes/templates/admin/menu-pages/options/default.php:44
 msgid "Intercom App ID"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:42
+#: src/includes/templates/admin/menu-pages/options/default.php:45
 msgid "e.g., G6z9edJfu3y"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:44
+#: src/includes/templates/admin/menu-pages/options/default.php:47
 msgid "Your App ID is available on the API Keys page on Intercom, accessible from your App Settings menu option."
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:52
+#: src/includes/templates/admin/menu-pages/options/default.php:55
 msgid "Personal Access Token"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:53
+#: src/includes/templates/admin/menu-pages/options/default.php:56
 msgid "e.g., yhgFvbENYQVCJETwGkBemk4PD7h3PuSDr5dNUv2dqaVzhpdYPkpTJWLQr5cYaSSx"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:55
+#: src/includes/templates/admin/menu-pages/options/default.php:58
 msgid "Generate a 'Personal Access Token' from the App Settings menu option at Intercom."
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:56
+#: src/includes/templates/admin/menu-pages/options/default.php:59
 msgid "Generate a 'Personal Access Token' at Intercom. See: <a href=\"%1$s\" target=\"_blank\">KB article/instructions</a>"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:67
+#: src/includes/templates/admin/menu-pages/options/default.php:70
 msgid "Messenger Display Options"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:68
+#: src/includes/templates/admin/menu-pages/options/default.php:71
 msgid "These settings control which areas of your site should display the clickable Intercom Messenger icon. This is accomplished by matching patterns against any given URI. A URI is the <code>/path/</code> part of a URL (everything after the domain name). The default behavior, when you have no inclusion/exclusion patterns, is to show the Messenger on every page of the site."
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:72
+#: src/includes/templates/admin/menu-pages/options/default.php:75
 msgid "URI Inclusion Patterns"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:73
+#: src/includes/templates/admin/menu-pages/options/default.php:76
 msgid "e.g., ^/support/**$"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:75
-#: src/includes/templates/admin/menu-pages/options/default.php:88
+#: src/includes/templates/admin/menu-pages/options/default.php:78
+#: src/includes/templates/admin/menu-pages/options/default.php:91
 msgid "A line-delimited list of patterns; i.e., one WRegx™ pattern per line please."
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:76
-#: src/includes/templates/admin/menu-pages/options/default.php:89
+#: src/includes/templates/admin/menu-pages/options/default.php:79
+#: src/includes/templates/admin/menu-pages/options/default.php:92
 msgid "One pattern per line. To learn more about patterns, see: <a href=\"%1$s\" target=\"_blank\">WRegx™ KB Article</a>"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:85
+#: src/includes/templates/admin/menu-pages/options/default.php:88
 msgid "URI Exclusion Patterns"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:86
+#: src/includes/templates/admin/menu-pages/options/default.php:89
 msgid "e.g., ^/blog/**$"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:98
+#: src/includes/templates/admin/menu-pages/options/default.php:101
 msgid "Logged-In User Status"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:100
+#: src/includes/templates/admin/menu-pages/options/default.php:103
 msgid "The Intercom 'Acquire' service must be enabled in your Intercom account if you want to display the Messenger to users who aren't logged-in."
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:101
+#: src/includes/templates/admin/menu-pages/options/default.php:104
 msgid "<a href=\"%1$s\" target=\"_blank\">Intercom Acquire</a> must be enabled in your Intercom account if you'd like to chat with users who aren't logged-in."
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:107
+#: src/includes/templates/admin/menu-pages/options/default.php:110
 msgid "show it to logged-in users only"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:108
+#: src/includes/templates/admin/menu-pages/options/default.php:111
 msgid "show it to logged-out users only"
 msgstr ""
 
-#: src/includes/templates/admin/menu-pages/options/default.php:109
+#: src/includes/templates/admin/menu-pages/options/default.php:112
 msgid "show it to logged-in &amp; logged-out users"
 msgstr ""
 
